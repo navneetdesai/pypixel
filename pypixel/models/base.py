@@ -5,6 +5,8 @@ import pypixel.constants as constants
 
 
 class Model:
+    prompt = None
+
     def __init__(self, **kwargs):
         for key, value in kwargs.items():
             setattr(self, key, value)

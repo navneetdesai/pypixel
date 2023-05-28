@@ -19,6 +19,9 @@ matplotlib = "^3.7.1"
 opencv-python = "^4.7.0.72"
 pyflakes = "^3.0.1"
 
+[scripts]
+pre-install = "touch pypixel/models/secrets.json"
+
 
 [build-system]
 requires = ["poetry-core"]
