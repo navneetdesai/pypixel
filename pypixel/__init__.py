@@ -5,7 +5,7 @@ import pyflakes
 from .constants import BLACKLIST, END, SECRETS, START
 from .exceptions import *
 from .models import Cohere, Model, OpenAI
-from .prompts import GenerateCodePrompt, Prompt
+from .prompts import FixCodePrompt, GenerateCodePrompt, Prompt
 
 
 class PyPixel:
@@ -17,6 +17,11 @@ class PyPixel:
 
         if kwargs.get("write_to_file"):
             self.write_to_file(code, kwargs.get("write_to_file"))
+        if kwargs.get("run_code"):
+            try:
+                exec(code, globals(), locals())
+            except Exception as e:
+                self.generate_code(FixCodePrompt(prompt, code, e), self.model)
         return code
 
     def __repr__(self):

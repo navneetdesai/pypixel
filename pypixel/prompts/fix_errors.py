@@ -2,7 +2,7 @@ from ..constants import END, START
 from .prompt import Prompt
 
 
-class FixCode(Prompt):
+class FixCodePrompt(Prompt):
     def __init__(self, prompt: str, code, errors):
         self.prompt = f"""
         You were given this prompt - "{prompt}". You generated this code - "{code}".
