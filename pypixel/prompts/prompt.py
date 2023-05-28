@@ -7,10 +7,10 @@ class Prompt:
     """
 
     prompt: str = None
+    allowed_libraries: tuple[str] = ALLOWED_LIBRARIES
 
     def __init__(self, prompt):
         self.prompt = prompt
-        self.allowed_libraries = ALLOWED_LIBRARIES
 
     def __str__(self):
         if not self.prompt:

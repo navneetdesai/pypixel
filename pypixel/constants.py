@@ -9,8 +9,6 @@ BLACKLIST = (  # blacklisted functions
     "__import__",
     "subprocess",
     "shell",
-    "open",
-    "file",
     "input",
     "pickle",
     "dangerous_function",

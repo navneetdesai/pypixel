@@ -1,3 +1,7 @@
+import ast
+
+import pyflakes
+
 from .constants import BLACKLIST, END, SECRETS, START
 from .exceptions import *
 from .models import Cohere, Model, OpenAI
@@ -29,7 +33,10 @@ class PyPixel:
             raise InvalidPromptException(str(prompt))
 
         response = model.run(prompt)
-        return self.extract_code(response)
+        code = self.extract_code(response)
+        if messages := self.check_code(code):
+            print(f"Warning: {messages}")
+        return code
 
     @staticmethod
     def extract_code(text):
@@ -44,3 +51,14 @@ class PyPixel:
     def write_to_file(code, file_name):
         with open(file_name, "w") as f:
             f.write(code)
+
+    @staticmethod
+    def check_code(code):
+        messages = []
+        tree = compile(code, "generated_code", "exec", ast.PyCF_ONLY_AST)
+        checker = pyflakes.Checker(tree, "generated_code")
+        for warning in checker.messages:
+            message = f"{warning.__class__.__name__}: {warning.message % warning.message_args}"
+
+            messages.append(message)
+        return messages
