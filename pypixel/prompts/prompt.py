@@ -2,7 +2,8 @@ class Prompt:
     """
     Base class for all prompts
     """
-    prompt = None
+
+    prompt: str = None
 
     def __init__(self, prompt):
         self.prompt = prompt
@@ -14,5 +15,3 @@ class Prompt:
 
     def __repr__(self):
         return self.__str__()
-
-
