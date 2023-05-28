@@ -4,6 +4,17 @@ class Prompt:
     """
 
     prompt: str = None
+    allowed_libraries = [
+        "opencv",
+        "numpy",
+        "pillow",
+        "matplotlib",
+        "PIL",
+        "scipy",
+        "cv2",
+        "scikit-image",
+        "mahotas",
+    ]
 
     def __init__(self, prompt):
         self.prompt = prompt

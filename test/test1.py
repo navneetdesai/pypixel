@@ -3,7 +3,10 @@ from pypixel import PyPixel
 
 def main():
     px = PyPixel()
-    code = px("Write code to make the image name CI brighter by two times")
+    code = px(
+        "Write code to make the image named dog brighter by two times",
+        write_to_file="make_dog_brighter.py",
+    )
     print(code)
 
 

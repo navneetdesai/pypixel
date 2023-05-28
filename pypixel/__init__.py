@@ -13,14 +13,18 @@ class PyPixel:
     def __init__(self):
         self.client = cohere.Client(self.read_secrets(SECRETS))
 
-    def __call__(self, prompt: str) -> str:
-        return self.generate_code(GenerateCodePrompt(prompt))
+    def __call__(self, prompt: str, **kwargs) -> str:
+        code = self.generate_code(GenerateCodePrompt(prompt))
+        if kwargs.get("write_to_file"):
+            self.write_to_file(code, kwargs.get("write_to_file"))
+
+        return code
 
     def __repr__(self):
-        pass
+        return self.__str__()
 
     def __str__(self):
-        pass
+        return "PyPixel"
 
     def generate_code(self, prompt: Prompt) -> str:
         client = self.client
@@ -28,7 +32,7 @@ class PyPixel:
             model="command",
             prompt=str(prompt),
             max_tokens=500,
-            temperature=0.2,
+            temperature=0.5,
             k=0,
             stop_sequences=[],
             return_likelihoods="NONE",
@@ -50,3 +54,8 @@ class PyPixel:
         if START not in text or END not in text:
             raise InvalidCodeException(text)
         return text.split(START)[1].split(END)[0]
+
+    @staticmethod
+    def write_to_file(code, file_name):
+        with open(file_name, "w") as f:
+            f.write(code)
