@@ -1,10 +1,11 @@
-from prompt import Prompt
+from ..constants import END, START
+from .prompt import Prompt
 
 
 class GenerateCodePrompt(Prompt):
-    prompt_template: str = """
+    prompt_template: str = f"""
     You are going to generate python3 code for the provided prompt.
-    Return python code prefixed with <start> exactly and suffixed with <end> exactly to perform 
+    Return python code prefixed with {START} exactly and suffixed with {END} exactly to perform 
     the following operation on an image:
     """
 

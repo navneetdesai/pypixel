@@ -1,3 +1,3 @@
 START = "<start>"
-END = "<end>"
+END = "</end>"
 SECRETS = "secrets.json"

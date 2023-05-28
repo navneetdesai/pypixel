@@ -1,9 +1,12 @@
 import json
+import os
 import secrets
 
 import cohere
-from constants import END, SECRETS, START
-from prompts import GenerateCodePrompt, Prompt
+
+from .constants import END, SECRETS, START
+from .exceptions import *
+from .prompts import GenerateCodePrompt, Prompt
 
 
 class PyPixel:
@@ -35,12 +38,15 @@ class PyPixel:
     @staticmethod
     def read_secrets(secrets_file: str) -> str:
         try:
+            current_dir = os.path.dirname(os.path.abspath(__file__))
+            secrets_file = os.path.join(current_dir, secrets_file)
             with open(secrets_file) as f:
                 return json.load(f)["cohere_api_key"]
         except FileNotFoundError as e:
             raise FileNotFoundError(f"Secrets file {secrets_file} not found") from e
 
-    def extract_code(self, text):
+    @staticmethod
+    def extract_code(text):
         if START not in text or END not in text:
-            raise ValueError(f"Invalid code generated: {text}")
+            raise InvalidCodeException(text)
         return text.split(START)[1].split(END)[0]
