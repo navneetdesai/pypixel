@@ -63,3 +63,14 @@ class CohereException(PyPixelException):
 
     def __str__(self):
         return f"Cohere Exception: {self.message}"
+
+
+class DangerousCodeException(PyPixelException):
+    """Invalid secrets file provided"""
+
+    def __init__(self, code: str, keywords: list):
+        self.code = code
+        self.keywords = keywords
+
+    def __str__(self):
+        return f"Code has blacklisted keywords: {self.keywords} Code: {self.code}"

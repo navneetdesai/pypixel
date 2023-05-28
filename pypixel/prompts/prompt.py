@@ -1,13 +1,16 @@
+from ..constants import ALLOWED_LIBRARIES
+
+
 class Prompt:
     """
     Base class for all prompts
     """
 
     prompt: str = None
-    allowed_libraries = ["opencv", "numpy", "matplotlib", "cv2"]
 
     def __init__(self, prompt):
         self.prompt = prompt
+        self.allowed_libraries = ALLOWED_LIBRARIES
 
     def __str__(self):
         if not self.prompt:

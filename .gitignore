@@ -1,6 +1,8 @@
-# Byte-compiled / optimized / DLL files
 test/test_output.py
 secrets.json
+private.txt
+
+# Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
 *$py.class

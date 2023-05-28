@@ -1,10 +1,4 @@
-import json
-import os
-
-import cohere
-import openai
-
-from .constants import END, SECRETS, START
+from .constants import BLACKLIST, END, SECRETS, START
 from .exceptions import *
 from .models import Cohere, Model, OpenAI
 from .prompts import GenerateCodePrompt, Prompt
@@ -16,9 +10,9 @@ class PyPixel:
 
     def __call__(self, prompt: str, **kwargs) -> str:
         code = self.generate_code(GenerateCodePrompt(prompt), self.model)
+
         if kwargs.get("write_to_file"):
             self.write_to_file(code, kwargs.get("write_to_file"))
-
         return code
 
     def __repr__(self):
@@ -41,6 +35,9 @@ class PyPixel:
     def extract_code(text):
         if START not in text or END not in text:
             raise InvalidCodeException(text)
+
+        if words := [word for word in BLACKLIST if word in text]:
+            raise DangerousCodeException(text, words)
         return text.split(START)[1].split(END)[0]
 
     @staticmethod
