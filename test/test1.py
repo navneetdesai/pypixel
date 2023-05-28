@@ -5,7 +5,7 @@ def main():
     px = PyPixel()
     code = px(
         "Write code to make the image named dog brighter by two times",
-        write_to_file="make_dog_brighter.py",
+        write_to_file="test_output.py",
     )
     print(code)
 
