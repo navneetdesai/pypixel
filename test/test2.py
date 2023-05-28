@@ -6,7 +6,7 @@ def main():
     model = OpenAI()
     px = PyPixel(model)
     code = px(
-        "Increase the brightness of the image by 50%",
+        "Use the image dog.jpg, generate histograms for each color channel, and save the histograms to a file named histograms.jpg.",
         write_to_file="test_output.py",
     )
     print(code)

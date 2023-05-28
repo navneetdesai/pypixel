@@ -11,11 +11,11 @@ from .prompts import GenerateCodePrompt, Prompt
 
 
 class PyPixel:
-    def __init__(self):
-        self.client = cohere.Client(self.read_secrets(SECRETS))
+    def __init__(self, model):
+        self.model = model
 
     def __call__(self, prompt: str, **kwargs) -> str:
-        code = self.generate_code(GenerateCodePrompt(prompt))
+        code = self.generate_code(GenerateCodePrompt(prompt), self.model)
         if kwargs.get("write_to_file"):
             self.write_to_file(code, kwargs.get("write_to_file"))
 
@@ -34,7 +34,8 @@ class PyPixel:
         if not isinstance(prompt, Prompt):
             raise InvalidPromptException(str(prompt))
 
-        model.run(prompt)
+        response = model.run(prompt)
+        return self.extract_code(response)
 
     @staticmethod
     def extract_code(text):
