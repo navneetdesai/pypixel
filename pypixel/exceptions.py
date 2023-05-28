@@ -35,3 +35,31 @@ class InvalidSecretsException(PyPixelException):
 
     def __str__(self):
         return f"Invalid secrets file provided: {self.secrets_file}"
+
+
+class UnimplementedModelException(PyPixelException):
+    """Invalid secrets file provided"""
+
+    def __init__(self, model: str):
+        self.model = model
+
+    def __str__(self):
+        return f"Model {self.model} is not implemented yet"
+
+
+class InvalidModelException(PyPixelException):
+    def __init__(self, model: str):
+        self.model = model
+
+    def __str__(self):
+        return f"{self.model} is not a valid model"
+
+
+class CohereException(PyPixelException):
+    """Invalid secrets file provided"""
+
+    def __init__(self, message: str):
+        self.message = message
+
+    def __str__(self):
+        return f"Cohere Exception: {self.message}"

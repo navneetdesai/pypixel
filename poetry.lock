@@ -588,6 +588,44 @@ files = [
 ]
 
 [[package]]
+name = "mahotas"
+version = "1.4.13"
+description = "Mahotas: Computer Vision Library"
+optional = false
+python-versions = "*"
+files = [
+    {file = "mahotas-1.4.13-cp310-cp310-macosx_10_15_universal2.whl", hash = "sha256:0515d6366590aaa527ae3ffea37171bb46c5f66eb9274d05bbd89f01a7691d3c"},
+    {file = "mahotas-1.4.13-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:b83756823807029e6e0ba43336430a7d14996ad3e90b941b97b0211a3c592852"},
+    {file = "mahotas-1.4.13-cp310-cp310-win32.whl", hash = "sha256:d382703e59f003d3424d409c315eeb4b1a625925d72994b0041ab391a6730d80"},
+    {file = "mahotas-1.4.13-cp310-cp310-win_amd64.whl", hash = "sha256:82e600ab9b1ede88d73ce32e1d7e178361c016e896b7dd7e2a5cc4f46bcd2d21"},
+    {file = "mahotas-1.4.13-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:e3328c0ff1ae828c544ba0df0fcdb5d0759948f86884f8fb31494d0441f45574"},
+    {file = "mahotas-1.4.13-cp36-cp36m-macosx_10_14_x86_64.whl", hash = "sha256:59ab9baf1b89b5478208965b72c8687b27e40dabe33a040e3b9638dfc584a59d"},
+    {file = "mahotas-1.4.13-cp36-cp36m-manylinux_2_12_x86_64.manylinux2010_x86_64.whl", hash = "sha256:cbca872d4d1037c8d83587204d573c017166f16cddeeeb76d5ec6e7abcd8401e"},
+    {file = "mahotas-1.4.13-cp36-cp36m-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:074d827cd0d47d419b60da869e043a80db78c21c15f38b2da4bfbe1d7114ec82"},
+    {file = "mahotas-1.4.13-cp36-cp36m-win32.whl", hash = "sha256:95e00d526009057540a986c858969d66ac9fff25ca6a65d1bf9faa821b8c2af7"},
+    {file = "mahotas-1.4.13-cp36-cp36m-win_amd64.whl", hash = "sha256:929cc0e543ca053545635ef2ea7560b6d9164ae0cd6a745f01cf6d761348bf13"},
+    {file = "mahotas-1.4.13-cp37-cp37m-macosx_10_15_x86_64.whl", hash = "sha256:d761f7ca63eca76518ffaa2a4635d013876aa0980bb3d3fb8b966c85ab0ed22d"},
+    {file = "mahotas-1.4.13-cp37-cp37m-manylinux_2_12_x86_64.manylinux2010_x86_64.whl", hash = "sha256:2ae3bf23dd64ae33b2cb9c3a44fd5ce5473f183c6fa482bccd8332d5687bf3d0"},
+    {file = "mahotas-1.4.13-cp37-cp37m-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:4ff37922ea14f3d3286dda025b91a302d135052b3f395f83c8ed27513b405555"},
+    {file = "mahotas-1.4.13-cp37-cp37m-win32.whl", hash = "sha256:e750353679cc7a5e82cc76ee311515423549061839f727d5513c86f2203682c6"},
+    {file = "mahotas-1.4.13-cp37-cp37m-win_amd64.whl", hash = "sha256:0b0ece5709aa8308b5f6788918d89f32822d165cb98228aafb46cff8112ccb26"},
+    {file = "mahotas-1.4.13-cp38-cp38-macosx_10_15_x86_64.whl", hash = "sha256:36d864fdbdf3efbf63bd5e7c884875b7ed7d7f5d447b4dc7c784943e6c82c9e9"},
+    {file = "mahotas-1.4.13-cp38-cp38-manylinux_2_12_x86_64.manylinux2010_x86_64.whl", hash = "sha256:40f81400cc1f4e0e969554f3cd928519642f0680d88be89ebfe2ee235fc8ae3b"},
+    {file = "mahotas-1.4.13-cp38-cp38-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:bd7811adab43c84cccf770a11b34567a49314da07eb81dd4763b40df354c8734"},
+    {file = "mahotas-1.4.13-cp38-cp38-win32.whl", hash = "sha256:ba120ed2d99bb9fbf89550d3f9e37a54310ca7cc246f0aa5251104b11e465c9f"},
+    {file = "mahotas-1.4.13-cp38-cp38-win_amd64.whl", hash = "sha256:cc896ed5c687be8de3ecd6c042481d26420deb0c1bd55943017c0af80285fa4f"},
+    {file = "mahotas-1.4.13-cp39-cp39-macosx_10_15_x86_64.whl", hash = "sha256:419e05d0a3803b914eb3b490616a0263e323a954a5cee5e1331e1f19f05de238"},
+    {file = "mahotas-1.4.13-cp39-cp39-manylinux_2_12_x86_64.manylinux2010_x86_64.whl", hash = "sha256:dd2e40958b61c3b1c98521fa3af921b740f31b442d2bfb6c76c572dfde44a859"},
+    {file = "mahotas-1.4.13-cp39-cp39-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:7ff86d6c07a83365493c23063e16041c317935aa3803a1f61d4322fa716e493c"},
+    {file = "mahotas-1.4.13-cp39-cp39-win32.whl", hash = "sha256:ff80e17b394589aa6db9371f20ccf403a5699ccbb7b0db96d352fedd20b97508"},
+    {file = "mahotas-1.4.13-cp39-cp39-win_amd64.whl", hash = "sha256:11f559d986c72b17cc079fc360efeb74580d75753cf2501ba742b0a9540b890c"},
+    {file = "mahotas-1.4.13.tar.gz", hash = "sha256:a78dfe15045a20a0d9e01538b80f874580cd3525ae3eaa2c83ced51eb455879c"},
+]
+
+[package.dependencies]
+numpy = "*"
+
+[[package]]
 name = "mccabe"
 version = "0.7.0"
 description = "McCabe checker, plugin for flake8"
@@ -705,6 +743,65 @@ files = [
 
 [package.dependencies]
 setuptools = "*"
+
+[[package]]
+name = "numpy"
+version = "1.24.3"
+description = "Fundamental package for array computing in Python"
+optional = false
+python-versions = ">=3.8"
+files = [
+    {file = "numpy-1.24.3-cp310-cp310-macosx_10_9_x86_64.whl", hash = "sha256:3c1104d3c036fb81ab923f507536daedc718d0ad5a8707c6061cdfd6d184e570"},
+    {file = "numpy-1.24.3-cp310-cp310-macosx_11_0_arm64.whl", hash = "sha256:202de8f38fc4a45a3eea4b63e2f376e5f2dc64ef0fa692838e31a808520efaf7"},
+    {file = "numpy-1.24.3-cp310-cp310-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:8535303847b89aa6b0f00aa1dc62867b5a32923e4d1681a35b5eef2d9591a463"},
+    {file = "numpy-1.24.3-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:2d926b52ba1367f9acb76b0df6ed21f0b16a1ad87c6720a1121674e5cf63e2b6"},
+    {file = "numpy-1.24.3-cp310-cp310-win32.whl", hash = "sha256:f21c442fdd2805e91799fbe044a7b999b8571bb0ab0f7850d0cb9641a687092b"},
+    {file = "numpy-1.24.3-cp310-cp310-win_amd64.whl", hash = "sha256:ab5f23af8c16022663a652d3b25dcdc272ac3f83c3af4c02eb8b824e6b3ab9d7"},
+    {file = "numpy-1.24.3-cp311-cp311-macosx_10_9_x86_64.whl", hash = "sha256:9a7721ec204d3a237225db3e194c25268faf92e19338a35f3a224469cb6039a3"},
+    {file = "numpy-1.24.3-cp311-cp311-macosx_11_0_arm64.whl", hash = "sha256:d6cc757de514c00b24ae8cf5c876af2a7c3df189028d68c0cb4eaa9cd5afc2bf"},
+    {file = "numpy-1.24.3-cp311-cp311-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:76e3f4e85fc5d4fd311f6e9b794d0c00e7002ec122be271f2019d63376f1d385"},
+    {file = "numpy-1.24.3-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:a1d3c026f57ceaad42f8231305d4653d5f05dc6332a730ae5c0bea3513de0950"},
+    {file = "numpy-1.24.3-cp311-cp311-win32.whl", hash = "sha256:c91c4afd8abc3908e00a44b2672718905b8611503f7ff87390cc0ac3423fb096"},
+    {file = "numpy-1.24.3-cp311-cp311-win_amd64.whl", hash = "sha256:5342cf6aad47943286afa6f1609cad9b4266a05e7f2ec408e2cf7aea7ff69d80"},
+    {file = "numpy-1.24.3-cp38-cp38-macosx_10_9_x86_64.whl", hash = "sha256:7776ea65423ca6a15255ba1872d82d207bd1e09f6d0894ee4a64678dd2204078"},
+    {file = "numpy-1.24.3-cp38-cp38-macosx_11_0_arm64.whl", hash = "sha256:ae8d0be48d1b6ed82588934aaaa179875e7dc4f3d84da18d7eae6eb3f06c242c"},
+    {file = "numpy-1.24.3-cp38-cp38-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:ecde0f8adef7dfdec993fd54b0f78183051b6580f606111a6d789cd14c61ea0c"},
+    {file = "numpy-1.24.3-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:4749e053a29364d3452c034827102ee100986903263e89884922ef01a0a6fd2f"},
+    {file = "numpy-1.24.3-cp38-cp38-win32.whl", hash = "sha256:d933fabd8f6a319e8530d0de4fcc2e6a61917e0b0c271fded460032db42a0fe4"},
+    {file = "numpy-1.24.3-cp38-cp38-win_amd64.whl", hash = "sha256:56e48aec79ae238f6e4395886b5eaed058abb7231fb3361ddd7bfdf4eed54289"},
+    {file = "numpy-1.24.3-cp39-cp39-macosx_10_9_x86_64.whl", hash = "sha256:4719d5aefb5189f50887773699eaf94e7d1e02bf36c1a9d353d9f46703758ca4"},
+    {file = "numpy-1.24.3-cp39-cp39-macosx_11_0_arm64.whl", hash = "sha256:0ec87a7084caa559c36e0a2309e4ecb1baa03b687201d0a847c8b0ed476a7187"},
+    {file = "numpy-1.24.3-cp39-cp39-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:ea8282b9bcfe2b5e7d491d0bf7f3e2da29700cec05b49e64d6246923329f2b02"},
+    {file = "numpy-1.24.3-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:210461d87fb02a84ef243cac5e814aad2b7f4be953b32cb53327bb49fd77fbb4"},
+    {file = "numpy-1.24.3-cp39-cp39-win32.whl", hash = "sha256:784c6da1a07818491b0ffd63c6bbe5a33deaa0e25a20e1b3ea20cf0e43f8046c"},
+    {file = "numpy-1.24.3-cp39-cp39-win_amd64.whl", hash = "sha256:d5036197ecae68d7f491fcdb4df90082b0d4960ca6599ba2659957aafced7c17"},
+    {file = "numpy-1.24.3-pp38-pypy38_pp73-macosx_10_9_x86_64.whl", hash = "sha256:352ee00c7f8387b44d19f4cada524586f07379c0d49270f87233983bc5087ca0"},
+    {file = "numpy-1.24.3-pp38-pypy38_pp73-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:1a7d6acc2e7524c9955e5c903160aa4ea083736fde7e91276b0e5d98e6332812"},
+    {file = "numpy-1.24.3-pp38-pypy38_pp73-win_amd64.whl", hash = "sha256:35400e6a8d102fd07c71ed7dcadd9eb62ee9a6e84ec159bd48c28235bbb0f8e4"},
+    {file = "numpy-1.24.3.tar.gz", hash = "sha256:ab344f1bf21f140adab8e47fdbc7c35a477dc01408791f8ba00d018dd0bc5155"},
+]
+
+[[package]]
+name = "openai"
+version = "0.27.7"
+description = "Python client library for the OpenAI API"
+optional = false
+python-versions = ">=3.7.1"
+files = [
+    {file = "openai-0.27.7-py3-none-any.whl", hash = "sha256:788fb7fa85bf7caac6c1ed7eea5984254a1bdaf09ef485acf0e5718c8b2dc25a"},
+    {file = "openai-0.27.7.tar.gz", hash = "sha256:bca95fd4c3054ef38924def096396122130454442ec52005915ecf8269626b1d"},
+]
+
+[package.dependencies]
+aiohttp = "*"
+requests = ">=2.20"
+tqdm = "*"
+
+[package.extras]
+datalib = ["numpy", "openpyxl (>=3.0.7)", "pandas (>=1.2.3)", "pandas-stubs (>=1.1.0.11)"]
+dev = ["black (>=21.6b0,<22.0)", "pytest (==6.*)", "pytest-asyncio", "pytest-mock"]
+embeddings = ["matplotlib", "numpy", "openpyxl (>=3.0.7)", "pandas (>=1.2.3)", "pandas-stubs (>=1.1.0.11)", "plotly", "scikit-learn (>=1.0.2)", "scipy", "tenacity (>=8.0.1)"]
+wandb = ["numpy", "openpyxl (>=3.0.7)", "pandas (>=1.2.3)", "pandas-stubs (>=1.1.0.11)", "wandb"]
 
 [[package]]
 name = "packaging"
@@ -897,6 +994,26 @@ files = [
     {file = "tomlkit-0.11.8-py3-none-any.whl", hash = "sha256:8c726c4c202bdb148667835f68d68780b9a003a9ec34167b6c673b38eff2a171"},
     {file = "tomlkit-0.11.8.tar.gz", hash = "sha256:9330fc7faa1db67b541b28e62018c17d20be733177d290a13b24c62d1614e0c3"},
 ]
+
+[[package]]
+name = "tqdm"
+version = "4.65.0"
+description = "Fast, Extensible Progress Meter"
+optional = false
+python-versions = ">=3.7"
+files = [
+    {file = "tqdm-4.65.0-py3-none-any.whl", hash = "sha256:c4f53a17fe37e132815abceec022631be8ffe1b9381c2e6e30aa70edc99e9671"},
+    {file = "tqdm-4.65.0.tar.gz", hash = "sha256:1871fb68a86b8fb3b59ca4cdd3dcccbc7e6d613eeed31f4c332531977b89beb5"},
+]
+
+[package.dependencies]
+colorama = {version = "*", markers = "platform_system == \"Windows\""}
+
+[package.extras]
+dev = ["py-make (>=0.1.0)", "twine", "wheel"]
+notebook = ["ipywidgets (>=6)"]
+slack = ["slack-sdk"]
+telegram = ["requests"]
 
 [[package]]
 name = "typing-extensions"
@@ -1120,4 +1237,4 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.9"
-content-hash = "f55243be0d8d4a5f056e80907011eff91efd20973361cd325d566374285517b1"
+content-hash = "7d94554626215fac3883ca6be328f3413b7e41ca78186256eef2f3706056b1cb"
