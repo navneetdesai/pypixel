@@ -9,19 +9,29 @@ from .prompts import FixCodePrompt, GenerateCodePrompt, Prompt
 
 
 class PyPixel:
-    def __init__(self, model):
+    debug: False
+    retries = 1
+
+    def __init__(self, model, **kwargs):
+        for key, value in kwargs.items():
+            setattr(self, key, value)
         self.model = model
 
     def __call__(self, prompt: str, **kwargs) -> str:
         code = self.generate_code(GenerateCodePrompt(prompt), self.model)
-
+        self.retries -= 1
         if kwargs.get("write_to_file"):
             self.write_to_file(code, kwargs.get("write_to_file"))
         if kwargs.get("run_code"):
             try:
+                if self.debug:
+                    print(f"Running code: {code}")
                 exec(code, globals(), locals())
             except Exception as e:
-                self.generate_code(FixCodePrompt(prompt, code, e), self.model)
+                if self.retries > 0:
+                    self.generate_code(FixCodePrompt(prompt, code, e), self.model)
+                else:
+                    raise InvalidCodeException(code) from e
         return code
 
     def __repr__(self):
