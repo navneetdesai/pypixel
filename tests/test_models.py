@@ -42,6 +42,8 @@ class TestOpenAI:
         assert repr(model) == "OpenAI"
 
     def test_implementation(self, mocker):
+        mock_request = mocker.patch("openai.Completion.create")
+        mock_request.return_value = "test"
         model = OpenAI()
         with pytest.raises(NotImplementedError):
             model.run("test")

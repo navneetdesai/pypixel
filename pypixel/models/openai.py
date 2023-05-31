@@ -16,13 +16,27 @@ class OpenAI(Model):
         openai.api_key = self._secrets.get("openai_api_key")
 
     def run(self, prompt):
-        response = openai.Completion.create(
-            engine=self.engine,
-            prompt=str(prompt),
-            max_tokens=self.max_tokens,
-            temperature=self.temperature,
-            top_p=self.top_p,
-            frequency_penalty=self.frequency_penalty,
-            presence_penalty=self.presence_penalty,
-        )
+        response = None
+        try:
+            response = openai.Completion.create(
+                engine=self.engine,
+                prompt=str(prompt),
+                max_tokens=self.max_tokens,
+                temperature=self.temperature,
+                top_p=self.top_p,
+                frequency_penalty=self.frequency_penalty,
+                presence_penalty=self.presence_penalty,
+            )
+        except openai.error.APIError as e:
+            print(f"OpenAI API returned an API Error: {e}")
+            return
+        except openai.error.APIConnectionError as e:
+            print(f"Failed to connect to OpenAI API: {e}")
+            return
+        except openai.error.RateLimitError as e:
+            print(f"OpenAI API request exceeded rate limit: {e}")
+            return
+        except openai.error.AuthenticationError as e:
+            print(f"OpenAI API key is invalid: {e}")
+            return
         return response.choices[0].text.strip()
