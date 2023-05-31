@@ -20,7 +20,7 @@ class Starcoder(Model):
     _API_URL = "https://api-inference.huggingface.co/models/bigcode/starcoder"
 
     @property
-    def type(self):
+    def model(self):
         return "starcoder"
 
     def post(self, prompt):
