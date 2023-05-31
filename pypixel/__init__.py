@@ -1,4 +1,5 @@
 import ast
+import logging
 import os
 from datetime import datetime
 
@@ -90,9 +91,24 @@ class PyPixel:
         image_url = self.model.generate_image(
             GenerateImagePrompt(prompt), size, num_images
         )
+        return self.download(download, image_url)
+
+    def download(self, download, image_url):
         if download:
             self.download_image(image_url)
+        else:
+            logging.warning(
+                "Image download is currently disabled. Use download=True to enable. Image URL expires in 60 minutes."
+            )
         return image_url
+
+    def edit_image(self, image, mask, prompt, n, size, download=False):
+        if not isinstance(self.model, OpenAI):
+            raise InvalidModelException(
+                "Invalid model for image editing. Only OpenAI supports image editing."
+            )
+        image_url = self.model.edit_image(EditImagePrompt(prompt), image, mask, n, size)
+        return self.download(download, image_url)
 
     @staticmethod
     def download_image(image_url):

@@ -21,6 +21,7 @@ pyflakes = "^3.0.1"
 requests = "^2.31.0"
 pytest = "^7.3.1"
 pytest-mock = "^3.10.0"
+logging = "^0.4.9.6"
 
 [scripts]
 pre-install = "touch pypixel/models/secrets.json"

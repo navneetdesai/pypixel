@@ -2,10 +2,9 @@ from ..exceptions import InvalidPromptException
 from .prompt import Prompt
 
 
-class GenerateImagePrompt(Prompt):
+class EditImagePrompt(Prompt):
     prompt_template: str = """
-    You will be given the description of an image. Analyze the context from the description and generate the image.
-    Here is the description:
+    You will be given an image, a mask, and a description of the new image. You must edit the image to match the description.
     """
 
     def __init__(self, prompt: str = None):

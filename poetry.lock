@@ -818,6 +818,16 @@ files = [
 ]
 
 [[package]]
+name = "logging"
+version = "0.4.9.6"
+description = "A logging module for Python"
+optional = false
+python-versions = "*"
+files = [
+    {file = "logging-0.4.9.6.tar.gz", hash = "sha256:26f6b50773f085042d301085bd1bf5d9f3735704db9f37c1ce6d8b85c38f2417"},
+]
+
+[[package]]
 name = "mahotas"
 version = "1.4.13"
 description = "Mahotas: Computer Vision Library"
@@ -1754,4 +1764,4 @@ testing = ["big-O", "flake8 (<5)", "jaraco.functools", "jaraco.itertools", "more
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.9"
-content-hash = "9589348a3e6eae9e883e0879e2f3b0370d999b70bb7cf5fde4f5475c26bf8167"
+content-hash = "0f9fadb24a080c885c0c5b6fb8fb53550ef97d0d0d973861411f90b0ebbe8b2a"

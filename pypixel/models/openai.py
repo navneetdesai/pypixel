@@ -1,7 +1,9 @@
+import logging
+
 import openai
 
 from ..exceptions import InvalidAttributeException, InvalidPromptException
-from ..prompts import GenerateImagePrompt
+from ..prompts import EditImagePrompt, GenerateImagePrompt
 from .base import Model
 
 
@@ -52,16 +54,39 @@ class OpenAI(Model):
         return dict(response).get("choices")[0].get("text").strip()
 
     def generate_image(
-        self, prompt: GenerateImagePrompt = None, size="256x256", num_images=1
+        self, prompt: GenerateImagePrompt = None, size=None, num_images=None
     ):
         if not prompt or not isinstance(prompt, GenerateImagePrompt):
             raise InvalidPromptException(str(prompt))
 
+        size, num_images = self.check_attributes(num_images, size)
+        response = openai.Image.create(prompt=str(prompt), n=num_images, size=size)
+        return response.get("data")[0].get("url")
+
+    def edit_image(
+        self, image, mask, prompt: EditImagePrompt = None, num_images=None, size=None
+    ):
+        if not prompt or not isinstance(prompt, EditImagePrompt):
+            raise InvalidPromptException(str(prompt))
+
+        size, num_images = self.check_attributes(num_images, size)
+        response = openai.Image.create_edit(
+            image=image, mask=mask, prompt=str(prompt), n=num_images, size=size
+        )
+        return response["data"][0]["url"]
+
+    def check_attributes(self, num_images, size):
+        if not size:
+            size = self._valid_sizes[0]
+            logging.warning("No size specified. Defaulting to 256x256")
+        if not num_images:
+            num_images = self._images_per_request[0]
+            logging.warning("No number of images specified. Defaulting to 1")
         if size not in self._valid_sizes:
             raise InvalidAttributeException(f"Sizes supported. {self._valid_sizes}")
         if num_images not in self._images_per_request:
             raise InvalidAttributeException(
                 f"Number of images supported: {self._images_per_request}"
             )
-        response = openai.Image.create(prompt=str(prompt), n=num_images, size=size)
-        return response.get("data")[0].get("url")
+
+        return size, num_images
