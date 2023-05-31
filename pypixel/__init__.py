@@ -73,13 +73,11 @@ class PyPixel:
 
     @staticmethod
     def check_code(code):
-        print(code)
         messages = []
         tree = compile(code, "generated_code", "exec", ast.PyCF_ONLY_AST)
         checker = pyflakes.Checker(tree, "generated_code")
         for warning in checker.messages:
             message = f"{warning.__class__.__name__}: {warning.message % warning.message_args}"
-
             messages.append(message)
         return messages
 

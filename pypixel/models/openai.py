@@ -60,7 +60,11 @@ class OpenAI(Model):
             raise InvalidPromptException(str(prompt))
 
         size, num_images = self.check_attributes(num_images, size)
-        response = openai.Image.create(prompt=str(prompt), n=num_images, size=size)
+        try:
+            response = openai.Image.create(prompt=str(prompt), n=num_images, size=size)
+        except openai.error.OpenAIError as e:
+            print(f"OpenAI API returned an error: {e}")
+            return
         return response.get("data")[0].get("url")
 
     def edit_image(
@@ -70,9 +74,14 @@ class OpenAI(Model):
             raise InvalidPromptException(str(prompt))
 
         size, num_images = self.check_attributes(num_images, size)
-        response = openai.Image.create_edit(
-            image=image, mask=mask, prompt=str(prompt), n=num_images, size=size
-        )
+        try:
+            response = openai.Image.create_edit(
+                image=image, mask=mask, prompt=str(prompt), n=num_images, size=size
+            )
+        except openai.error.OpenAIError as e:
+            print(f"OpenAI API returned an error: {e}")
+            return
+
         return response["data"][0]["url"]
 
     def check_attributes(self, num_images, size):
