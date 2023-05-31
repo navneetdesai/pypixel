@@ -1,4 +1,5 @@
 from ..constants import ALLOWED_LIBRARIES
+from ..exceptions import InvalidPromptException
 
 
 class Prompt:
@@ -9,7 +10,9 @@ class Prompt:
     prompt: str = None
     allowed_libraries: tuple[str] = ALLOWED_LIBRARIES
 
-    def __init__(self, prompt):
+    def __init__(self, prompt=None):
+        if not prompt:
+            raise InvalidPromptException(prompt)
         self.prompt = prompt
 
     def __str__(self):
