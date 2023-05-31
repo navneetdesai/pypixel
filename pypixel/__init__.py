@@ -78,3 +78,10 @@ class PyPixel:
 
             messages.append(message)
         return messages
+
+    def generate_image(self, prompt, size, num_images):
+        if not isinstance(self.model, OpenAI):
+            raise InvalidModelException(
+                "Invalid model for image generation. Only OpenAI supports image generation."
+            )
+        return self.model.generate_image(prompt, size, num_images)

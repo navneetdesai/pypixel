@@ -1,5 +1,6 @@
 import openai
 
+from ..exceptions import InvalidAttributeException, InvalidPromptException
 from .base import Model
 
 
@@ -10,6 +11,9 @@ class OpenAI(Model):
     top_p = 1
     frequency_penalty = 0.25
     presence_penalty = 0
+
+    _valid_sizes = "256x256", "512x512", "1024x1024"
+    _images_per_request = range(1, 11)
 
     @property
     def model(self):
@@ -45,3 +49,16 @@ class OpenAI(Model):
             return
 
         return dict(response).get("choices")[0].get("text").strip()
+
+    def generate_image(self, prompt=None, size="256x256", num_images=1):
+        if not prompt or not isinstance(prompt, str):
+            raise InvalidPromptException(prompt)
+
+        if size not in self._valid_sizes:
+            raise InvalidAttributeException(f"Sizes supported. {self._valid_sizes}")
+        if num_images not in self._images_per_request:
+            raise InvalidAttributeException(
+                f"Number of images supported: {self._images_per_request}"
+            )
+        response = openai.Image.create(prompt=prompt, n=num_images, size=size)
+        print(response["data"][0])

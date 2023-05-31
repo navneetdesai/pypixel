@@ -7,6 +7,16 @@ class PyPixelException(Exception):
     """Base class for all PyPixel exceptions"""
 
 
+class InvalidAttributeException(PyPixelException):
+    """Invalid attribute provided"""
+
+    def __init__(self, attribute: str):
+        self.attribute = attribute
+
+    def __str__(self):
+        return f"Invalid attribute provided: {self.attribute}"
+
+
 class InvalidCodeException(PyPixelException):
     """Invalid code generated"""
 
