@@ -1,11 +1,14 @@
 import ast
+import os
+from datetime import datetime
 
 import pyflakes
+import requests
 
-from .constants import BLACKLIST, END, SECRETS, START
+from .constants import BLACKLIST, DOWNLOAD_DIR, END, SECRETS, START
 from .exceptions import *
 from .models import Cohere, Model, OpenAI
-from .prompts import FixCodePrompt, GenerateCodePrompt, Prompt
+from .prompts import *
 
 
 class PyPixel:
@@ -79,9 +82,30 @@ class PyPixel:
             messages.append(message)
         return messages
 
-    def generate_image(self, prompt, size, num_images):
+    def generate_image(self, prompt, size, num_images, download=False):
         if not isinstance(self.model, OpenAI):
             raise InvalidModelException(
                 "Invalid model for image generation. Only OpenAI supports image generation."
             )
-        return self.model.generate_image(prompt, size, num_images)
+        image_url = self.model.generate_image(
+            GenerateImagePrompt(prompt), size, num_images
+        )
+        if download:
+            self.download_image(image_url)
+        return image_url
+
+    @staticmethod
+    def download_image(image_url):
+        os.makedirs(DOWNLOAD_DIR, exist_ok=True)
+        file_name = os.path.join(
+            DOWNLOAD_DIR, datetime.now().strftime("%Y%m%d%H%M%S%f") + ".png"
+        )
+        try:
+            response = requests.get(image_url)
+            response.raise_for_status()
+            with open(file_name, "wb") as file:
+                file.write(response.content)
+
+            print(f"Image downloaded successfully: {file_name}")
+        except requests.exceptions.RequestException as e:
+            print(f"Error downloading image: {e}")

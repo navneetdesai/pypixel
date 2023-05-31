@@ -6,7 +6,7 @@ def main():
     model = OpenAI()  # choose a model
     px = PyPixel(model)  # initialize PyPixel with the model
     # generate code
-    code = px.generate_image("Image of a duck", "256x256", 1)
+    url = px.generate_image("Image of a duck", "256x256", 1, download=True)
     # if code has runtime errors, prompt for a fix
 
 

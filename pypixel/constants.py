@@ -24,3 +24,4 @@ BLACKLIST = (  # blacklisted functions
     "vars",
     "dir",
 )
+DOWNLOAD_DIR = "downloads"
