@@ -12,7 +12,7 @@ BLACKLIST = (  # blacklisted functions
     "input",
     "pickle",
     "dangerous_function",
-    "rm",
+    "rm -rf",
     "rmdir",
     "unlink",
     "remove",

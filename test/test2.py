@@ -1,9 +1,9 @@
 from pypixel import PyPixel
-from pypixel.models import Cohere, OpenAI
+from pypixel.models import Cohere, OpenAI, Starcoder
 
 
 def main():
-    model = OpenAI()  # choose a model
+    model = Starcoder()  # choose a model
     px = PyPixel(model)  # initialize PyPixel with the model
     # generate code
     code = px(
