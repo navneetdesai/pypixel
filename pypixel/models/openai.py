@@ -11,6 +11,10 @@ class OpenAI(Model):
     frequency_penalty = 0.25
     presence_penalty = 0
 
+    @property
+    def model(self):
+        return "OpenAI"
+
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         openai.api_key = self._secrets.get("openai_api_key")
@@ -39,4 +43,5 @@ class OpenAI(Model):
         except openai.error.AuthenticationError as e:
             print(f"OpenAI API key is invalid: {e}")
             return
-        return response.choices[0].text.strip()
+
+        return dict(response).get("choices")[0].get("text").strip()

@@ -11,7 +11,6 @@ BLACKLIST = (  # blacklisted functions
     "shell",
     "input",
     "pickle",
-    "dangerous_function",
     "rm -rf",
     "rmdir",
     "unlink",
@@ -24,6 +23,4 @@ BLACKLIST = (  # blacklisted functions
     "locals",
     "vars",
     "dir",
-    "type",
-    "repr",
 )
