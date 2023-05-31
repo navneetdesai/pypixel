@@ -70,11 +70,7 @@ class TestOpenAI:
         assert response == expected_text
 
     def test_openai_api_error(self, mocker):
-        model = OpenAI()
-        prompt = "Generate code for histogram equalization."
-        expected_text = "# mock results \n import cv2"
-
-        mock = mocker.patch("openai.Completion.create")
+        mock, model, prompt = self.setup_mocker(mocker)
         mock.side_effect = openai.error.APIError("API Error")
         response = model.run(prompt)
         mock.assert_called_once_with(
@@ -89,12 +85,14 @@ class TestOpenAI:
 
         assert response is None
 
-    def test_openai_api_connection_error(self, mocker):
+    def setup_mocker(self, mocker):
         model = OpenAI()
         prompt = "Generate code for histogram equalization."
-        expected_text = "# mock results \n import cv2"
-
         mock = mocker.patch("openai.Completion.create")
+        return mock, model, prompt
+
+    def test_openai_api_connection_error(self, mocker):
+        mock, model, prompt = self.setup_mocker(mocker)
         mock.side_effect = openai.error.APIConnectionError("API Connection Error")
         response = model.run(prompt)
         mock.assert_called_once_with(
@@ -110,11 +108,7 @@ class TestOpenAI:
         assert response is None
 
     def test_openai_api_rate_limit_error(self, mocker):
-        model = OpenAI()
-        prompt = "Generate code for histogram equalization."
-        expected_text = "# mock results \n import cv2"
-
-        mock = mocker.patch("openai.Completion.create")
+        mock, model, prompt = self.setup_mocker(mocker)
         mock.side_effect = openai.error.RateLimitError("Rate Limit Error")
         response = model.run(prompt)
         mock.assert_called_once_with(
