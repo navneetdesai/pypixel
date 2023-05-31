@@ -22,3 +22,12 @@ class TestPrompts:
     def test_generate_code(self):
         with pytest.raises(InvalidPromptException):
             prompts.GenerateCodePrompt()
+
+    def test_prompt_str(self):
+        with pytest.raises(InvalidPromptException):
+            str(prompts.Prompt())
+
+        assert (
+            str(prompts.GenerateCodePrompt(prompt="test"))
+            == f"{prompts.GenerateCodePrompt.prompt_template} test"
+        )

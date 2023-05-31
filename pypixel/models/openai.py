@@ -13,7 +13,7 @@ class OpenAI(Model):
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        openai.api_key = self.secrets.get("openai_api_key")
+        openai.api_key = self._secrets.get("openai_api_key")
 
     def run(self, prompt):
         response = openai.Completion.create(

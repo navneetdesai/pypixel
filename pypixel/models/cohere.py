@@ -13,7 +13,7 @@ class Cohere(Model):
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.client = cohere.Client(self.secrets.get("cohere_api_key"))
+        self.client = cohere.Client(self._secrets.get("cohere_api_key"))
 
     def run(self, prompt):
         response = self.client.generate(

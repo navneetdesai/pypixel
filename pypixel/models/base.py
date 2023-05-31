@@ -10,7 +10,7 @@ class Model:
     def __init__(self, **kwargs):
         for key, value in kwargs.items():
             setattr(self, key, value)
-        self.secrets = self.read_secrets(constants.SECRETS)
+        self._secrets = self.read_secrets(constants.SECRETS)
 
     def __repr__(self):
         return self.__str__()

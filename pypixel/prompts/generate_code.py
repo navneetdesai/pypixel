@@ -1,4 +1,5 @@
 from ..constants import END, START
+from ..exceptions import InvalidPromptException
 from .prompt import Prompt
 
 
@@ -8,4 +9,6 @@ class GenerateCodePrompt(Prompt):
     """
 
     def __init__(self, prompt: str = None):
+        if not prompt:
+            raise InvalidPromptException(prompt)
         super().__init__(prompt=f"{self.prompt_template} {prompt}")
