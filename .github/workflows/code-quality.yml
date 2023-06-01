@@ -5,12 +5,18 @@ on:
     branches: [main]
   pull_request:
     branches: [main]
+    
+
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Create secrets JSON File
+        run: |
+          echo '{ "cohere_api_key": "Dummy", "openai_api_key": "Dummy", "starcoder_api_key": "Dummy" }' > secrets.json
+    
       - name: Checkout code
         uses: actions/checkout@v3
 
