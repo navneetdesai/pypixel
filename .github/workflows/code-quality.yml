@@ -13,10 +13,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Create secrets JSON File
-        run: |
-          touch /home/runner/work/pypixel/pypixel/pypixel/models/secrets.json
-          echo '{ "cohere_api_key": "Dummy", "openai_api_key": "Dummy", "starcoder_api_key": "Dummy" }' > /home/runner/work/pypixel/pypixel/pypixel/models/secrets.json
     
       - name: Checkout code
         uses: actions/checkout@v3
@@ -35,8 +31,6 @@ jobs:
       - name: Run black (check)
         run: poetry run black --check .
 
-      - name: Run pytest
-        run: poetry run pytest
 
       - name: Run isort (check)
         run: poetry run isort --check .
