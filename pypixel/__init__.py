@@ -17,6 +17,10 @@ from .prompts import *
 
 
 class PyPixel:
+    """
+    PyPixel class that can be used to generate code or images from a prompt.
+    """
+
     debug: bool = False
     retries = 1
 
@@ -146,10 +150,11 @@ class PyPixel:
         Generates images from a prompt.
         :param prompt: Prompt in natural language
         :param size: Size of the image. Default: 256x256
-                     Supported: 256x256, 512x512, 1024x1024
+        Supported: 256x256, 512x512, 1024x1024
         :param num_images: Number of images to generate
         :param download: Whether to download the images
         :return: List of image URLs
+
         """
         if not isinstance(self.model, OpenAI):
             raise InvalidModelException(
