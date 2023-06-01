@@ -3,6 +3,7 @@ import pytest
 
 from pypixel.exceptions import *
 from pypixel.models import OpenAI
+from pypixel.prompts import *
 
 
 class TestOpenAI:
