@@ -12,8 +12,8 @@ class TestStarcoder:
         assert model.model == "starcoder"
 
     def test_representation(self, model):
-        assert str(model) == "starcoder"
-        assert repr(model) == "starcoder"
+        assert str(model) == "Starcoder"
+        assert repr(model) == "Starcoder"
 
     def test_secrets(self, model):
         assert hasattr(

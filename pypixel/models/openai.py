@@ -53,7 +53,7 @@ class OpenAI(Model):
 
         return dict(response).get("choices")[0].get("text").strip()
 
-    def generate_image(
+    def generate_images(
         self, prompt: GenerateImagePrompt = None, size=None, num_images=None
     ):
         if not prompt or not isinstance(prompt, GenerateImagePrompt):
@@ -65,9 +65,10 @@ class OpenAI(Model):
         except openai.error.OpenAIError as e:
             print(f"OpenAI API returned an error: {e}")
             return
-        return response.get("data")[0].get("url")
 
-    def edit_image(
+        return [response.get("data")[index].get("url") for index in range(num_images)]
+
+    def edit_images(
         self, image, mask, prompt: EditImagePrompt = None, num_images=None, size=None
     ):
         if not prompt or not isinstance(prompt, EditImagePrompt):
@@ -82,7 +83,7 @@ class OpenAI(Model):
             print(f"OpenAI API returned an error: {e}")
             return
 
-        return response["data"][0]["url"]
+        return [response.get("data")[index].get("url") for index in range(num_images)]
 
     def check_attributes(self, num_images, size):
         if not size:

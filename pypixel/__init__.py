@@ -81,38 +81,41 @@ class PyPixel:
             messages.append(message)
         return messages
 
-    def generate_image(self, prompt, size, num_images, download=False):
+    def generate_images(self, prompt, size, num_images, download=False):
         if not isinstance(self.model, OpenAI):
             raise InvalidModelException(
                 "Invalid model for image generation. Only OpenAI supports image generation."
             )
-        image_url = self.model.generate_image(
+        image_urls = self.model.generate_images(
             GenerateImagePrompt(prompt), size, num_images
         )
-        return self.download(download, image_url)
+        return self.download(download, image_urls)
 
-    def download(self, download, image_url):
+    def download(self, download, image_urls):
         if download:
-            self.download_image(image_url)
+            for image_url in image_urls:
+                self.download_image(image_url)
         else:
             logging.warning(
                 "Image download is currently disabled. Use download=True to enable. Image URL expires in 60 minutes."
             )
-        return image_url
+        return image_urls
 
-    def edit_image(self, image, mask, prompt, n, size, download=False):
+    def edit_images(self, image, mask, prompt, n, size, download=False):
         if not isinstance(self.model, OpenAI):
             raise InvalidModelException(
                 "Invalid model for image editing. Only OpenAI supports image editing."
             )
-        image_url = self.model.edit_image(EditImagePrompt(prompt), image, mask, n, size)
-        return self.download(download, image_url)
+        image_urls = self.model.edit_images(
+            EditImagePrompt(prompt), image, mask, n, size
+        )
+        return self.download(download, image_urls)
 
     @staticmethod
     def download_image(image_url):
         os.makedirs(DOWNLOAD_DIR, exist_ok=True)
         file_name = os.path.join(
-            DOWNLOAD_DIR, datetime.now().strftime("%Y%m%d%H%M%S%f") + ".png"
+            DOWNLOAD_DIR, datetime.now().strftime("%Y-%m-%d-%H:%M:%S%f") + ".png"
         )
         try:
             response = requests.get(image_url)

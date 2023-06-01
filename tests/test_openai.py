@@ -1,6 +1,7 @@
 import openai
 import pytest
 
+from pypixel.exceptions import *
 from pypixel.models import OpenAI
 
 
@@ -122,3 +123,81 @@ class TestOpenAI:
         )
 
         assert response is None
+
+    def test_generate_image(self):
+        with pytest.raises(InvalidPromptException):
+            OpenAI().generate_images()
+
+    def test_generate_image_with_str_prompt(self):
+        with pytest.raises(InvalidPromptException):
+            OpenAI().generate_images(prompt="prompt")
+
+    def test_generate_image_with_invalid_size(self, caplog):
+        model = OpenAI()
+        with pytest.raises(InvalidAttributeException):
+            model.generate_images(
+                prompt=GenerateImagePrompt("prompt"), size=200, num_images=2
+            )
+
+        with pytest.raises(InvalidAttributeException):
+            model.generate_images(
+                prompt=GenerateImagePrompt("prompt"), size="256x256", num_images=20
+            )
+
+    def test_generate_image_with_default_params(self, caplog):
+        model = OpenAI()
+        model.generate_images(prompt=GenerateImagePrompt("prompt"))
+        assert len(caplog.records) == 2
+        assert caplog.records[0].levelname == "WARNING"
+        assert "No size specified. Defaulting to 256x256" in caplog.records[0].message
+        assert (
+            "No number of images specified. Defaulting to 1"
+            in caplog.records[1].message
+        )
+
+    def test_generate_images_run(self, mocker):
+        model = OpenAI()
+        prompt = GenerateImagePrompt("Generate wallpaper for engineers.")
+        expected_value = ["test_url1", "test_url2", "test_url3"]
+
+        mock = mocker.patch("openai.Image.create")
+        mock.return_value = {
+            "data": [
+                {"url": "test_url1"},
+                {"url": "test_url2"},
+                {"url": "test_url3"},
+            ]
+        }
+        response = model.generate_images(prompt, num_images=3)
+        mock.assert_called_once_with(
+            prompt=str(prompt),
+            n=3,
+            size="256x256",
+        )
+
+        assert response == expected_value
+
+    def test_edit_images_run(self, mocker):
+        model = OpenAI()
+        prompt = EditImagePrompt("Generate wallpaper for engineers.")
+        expected_value = ["test_url1", "test_url2", "test_url3"]
+
+        mock = mocker.patch("openai.Image.create_edit")
+        mock.return_value = {
+            "data": [
+                {"url": "test_url1"},
+                {"url": "test_url2"},
+                {"url": "test_url3"},
+            ]
+        }
+        image = mask = None  # dummy
+        response = model.edit_images(image, mask, prompt, num_images=3)
+        mock.assert_called_once_with(
+            image=image,  # dummy data
+            mask=mask,
+            prompt=str(prompt),
+            n=3,
+            size="256x256",
+        )
+
+        assert response == expected_value
