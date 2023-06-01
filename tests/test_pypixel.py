@@ -64,7 +64,7 @@ class TestPyPixel:
 
     def test_check_invalid_code(self):
         # invalid code
-        code = "def test():\nprint('No indentation')"
+        code = "def test():\nprint(No indentation')"
         with pytest.raises(IndentationError):
             self.pypixel_openai.check_code(code)
 
@@ -73,7 +73,3 @@ class TestPyPixel:
 
         with pytest.raises(SyntaxError):
             self.pypixel_openai.check_code("print('Hello world'")
-
-
-class TestPyPixelRun:
-    pass

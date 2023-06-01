@@ -26,18 +26,29 @@ class PyPixel:
         code = self.generate_code(GenerateCodePrompt(prompt), self.model)
         self.retries -= 1
         if kwargs.get("write_to_file"):
+            self.debug and print("Writing to file...")
             self.write_to_file(code, kwargs.get("write_to_file"))
         if kwargs.get("run_code"):
-            try:
-                if self.debug:
-                    print(f"Running code: {code}")
-                exec(code, globals(), locals())
-            except Exception as e:
-                if self.retries > 0:
-                    self.generate_code(FixCodePrompt(prompt, code, e), self.model)
-                else:
-                    raise InvalidCodeException(code) from e
+            while self.retries > 0:
+                try:
+                    if messages := self.check_code(code):
+                        print(f"Warning: {messages}")
+                    self.run_code(code)
+                    break
+                except Exception as e:
+                    self.debug and print(f"Retry: {self.retries}")
+                    code = self.generate_code(
+                        FixCodePrompt(prompt, code, e), self.model
+                    )
+                    self.retries -= 1
+            else:
+                raise InvalidCodeException(code)
+
         return code
+
+    def run_code(self, code):
+        self.debug and print(f"Running code: {code}")
+        exec(code, globals(), locals())
 
     def __repr__(self):
         return self.__str__()
@@ -53,17 +64,14 @@ class PyPixel:
             raise InvalidPromptException(str(prompt))
 
         response = model.run(prompt)
-        code = self.extract_code(response)
-        if messages := self.check_code(code):
-            print(f"Warning: {messages}")
-        return code
+        return self.extract_code(response)
 
-    @staticmethod
-    def extract_code(text):
+    def extract_code(self, text):
         if START not in text or END not in text:
             raise InvalidCodeException(text)
 
         code = text.split(START)[1].split(END)[0]
+        self.debug and print("Extracting code...")
         if words := [word for word in BLACKLIST if word in code]:
             raise DangerousCodeException(text, words)
         return code
@@ -73,8 +81,8 @@ class PyPixel:
         with open(file_name, "w") as f:
             f.write(code)
 
-    @staticmethod
-    def check_code(code):
+    def check_code(self, code):
+        self.debug and print("Checking code with pyflakes...")
         messages = []
         tree = compile(code, "generated_code", "exec", ast.PyCF_ONLY_AST)
         checker = pyflakes.checker.Checker(tree, "generated_code")
@@ -88,6 +96,7 @@ class PyPixel:
             raise InvalidModelException(
                 "Invalid model for image generation. Only OpenAI supports image generation."
             )
+        self.debug and print("Generating images...")
         image_urls = self.model.generate_images(
             GenerateImagePrompt(prompt), size, num_images
         )
@@ -108,20 +117,22 @@ class PyPixel:
             raise InvalidModelException(
                 "Invalid model for image editing. Only OpenAI supports image editing."
             )
+        self.debug and print("Editing images...")
         image_urls = self.model.edit_images(
             EditImagePrompt(prompt), image, mask, n, size
         )
         return self.download(download, image_urls)
 
-    @staticmethod
-    def download_image(image_url):
+    def download_image(self, image_url):
         os.makedirs(DOWNLOAD_DIR, exist_ok=True)
         file_name = os.path.join(
             DOWNLOAD_DIR, datetime.now().strftime("%Y-%m-%d-%H:%M:%S%f") + ".png"
         )
         try:
+            self.debug and print("Retrieving image from url...")
             response = requests.get(image_url)
             response.raise_for_status()
+            self.debug and print("Downloading from url...")
             with open(file_name, "wb") as file:
                 file.write(response.content)
 
