@@ -1,3 +1,6 @@
+"""
+Module that implements the Starcoder model
+"""
 import requests
 
 from ..constants import STARCODER_API_KEY
@@ -27,7 +30,6 @@ class Starcoder(Model):
     def post(self, prompt):
         header = {"Authorization": f"Bearer {self._secrets.get(STARCODER_API_KEY)}"}
         payload = {"inputs": str(prompt)}
-        print(payload)
         response = requests.post(self._API_URL, json=payload, headers=header)
         print(f"Response: {response.json()}")
         return response.json()[0]["generated_text"]

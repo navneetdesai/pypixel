@@ -1,3 +1,6 @@
+"""
+Base class for all prompts
+"""
 from ..constants import ALLOWED_LIBRARIES
 from ..exceptions import InvalidPromptException
 

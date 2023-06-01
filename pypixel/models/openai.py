@@ -1,3 +1,6 @@
+"""
+OpenAI API model
+"""
 import logging
 
 import openai
@@ -21,13 +24,26 @@ class OpenAI(Model):
 
     @property
     def model(self):
+        """
+        Returns the model name.
+        :return:
+        """
         return "OpenAI"
 
     def __init__(self, **kwargs):
+        """
+        Initialize the OpenAI model.
+        :param kwargs: dict
+        """
         super().__init__(**kwargs)
         openai.api_key = self._secrets.get(OPENAI_API_KEY)
 
     def run(self, prompt):
+        """
+        Run the model.
+        :param prompt:
+        :return:
+        """
         response = None
         try:
             response = openai.Completion.create(
@@ -57,6 +73,13 @@ class OpenAI(Model):
     def generate_images(
         self, prompt: GenerateImagePrompt = None, size=None, num_images=None
     ):
+        """
+        Generate images from a prompt.
+        :param prompt:
+        :param size:
+        :param num_images:
+        :return:
+        """
         if not prompt or not isinstance(prompt, GenerateImagePrompt):
             raise InvalidPromptException(str(prompt))
 
@@ -72,6 +95,15 @@ class OpenAI(Model):
     def edit_images(
         self, image, mask, prompt: EditImagePrompt = None, num_images=None, size=None
     ):
+        """
+        Edit images from a prompt.
+        :param image:
+        :param mask:
+        :param prompt:
+        :param num_images:
+        :param size:
+        :return:
+        """
         if not prompt or not isinstance(prompt, EditImagePrompt):
             raise InvalidPromptException(str(prompt))
 
@@ -87,6 +119,12 @@ class OpenAI(Model):
         return [response.get("data")[index].get("url") for index in range(num_images)]
 
     def check_attributes(self, num_images, size):
+        """
+        Check the attributes.
+        :param num_images:
+        :param size:
+        :return:
+        """
         if not size:
             size = self._valid_sizes[0]
             logging.warning("No size specified. Defaulting to 256x256")

@@ -1,8 +1,11 @@
-START = "<start>"
+"""
+Constants used throughout the project.
+"""
+START = "<start>"  # start and end tokens
 END = "</end>"
-SECRETS = "secrets.json"
+SECRETS = "secrets.json"  # secrets file
 ALLOWED_LIBRARIES = "opencv", "numpy", "matplotlib", "cv2"
-OPENAI_API_KEY = "OPENAI_KEY"
+OPENAI_API_KEY = "OPENAI_KEY"  # environment variables
 COHERE_API_KEY = "COHERE_KEY"
 STARCODER_API_KEY = "STARCODER_KEY"
 BLACKLIST = (  # blacklisted functions
@@ -27,4 +30,4 @@ BLACKLIST = (  # blacklisted functions
     "vars",
     "dir",
 )
-DOWNLOAD_DIR = "downloads"
+DOWNLOAD_DIR = "downloads"  # directory for downloads

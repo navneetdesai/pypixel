@@ -1,3 +1,6 @@
+"""
+This module contains the FixCodePrompt class for fixing code.
+"""
 from ..constants import END, START
 from ..exceptions import InvalidPromptException
 from .prompt import Prompt

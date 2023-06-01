@@ -1,3 +1,6 @@
+"""
+This module contains the GenerateImagePrompt class.
+"""
 from ..exceptions import InvalidPromptException
 from .prompt import Prompt
 

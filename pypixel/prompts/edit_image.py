@@ -1,3 +1,6 @@
+"""
+This class is used to create a prompt for the user to edit an image.
+"""
 from ..exceptions import InvalidPromptException
 from .prompt import Prompt
 

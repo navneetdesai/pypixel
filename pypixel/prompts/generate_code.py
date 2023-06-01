@@ -1,3 +1,6 @@
+"""
+This module contains the GenerateCodePrompt class for generating code.
+"""
 from ..constants import END, START
 from ..exceptions import InvalidPromptException
 from .prompt import Prompt

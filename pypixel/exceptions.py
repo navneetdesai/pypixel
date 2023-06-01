@@ -48,7 +48,7 @@ class InvalidSecretsException(PyPixelException):
 
 
 class UnimplementedModelException(PyPixelException):
-    """Invalid secrets file provided"""
+    """Model is not implemented yet"""
 
     def __init__(self, model: str):
         self.model = model
@@ -58,6 +58,8 @@ class UnimplementedModelException(PyPixelException):
 
 
 class InvalidModelException(PyPixelException):
+    """Model is not valid"""
+
     def __init__(self, model: str):
         self.model = model
 
@@ -66,7 +68,7 @@ class InvalidModelException(PyPixelException):
 
 
 class CohereException(PyPixelException):
-    """Invalid secrets file provided"""
+    """Exceptions raised by the Cohere API"""
 
     def __init__(self, message: str):
         self.message = message
@@ -76,7 +78,7 @@ class CohereException(PyPixelException):
 
 
 class DangerousCodeException(PyPixelException):
-    """Invalid secrets file provided"""
+    """Generated code has blacklisted keywords"""
 
     def __init__(self, code: str, keywords: list):
         self.code = code

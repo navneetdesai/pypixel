@@ -1,3 +1,8 @@
+"""
+Cohere API model.
+"""
+
+
 import cohere
 
 from ..constants import COHERE_API_KEY
@@ -14,13 +19,26 @@ class Cohere(Model):
 
     @property
     def model(self):
+        """
+        Returns the model name.
+        :return: str
+        """
         return "Cohere"
 
     def __init__(self, **kwargs):
+        """
+        Initialize the Cohere model.
+        :param kwargs: dict
+        """
         super().__init__(**kwargs)
         self.client = cohere.Client(self._secrets.get(COHERE_API_KEY))
 
     def run(self, prompt):
+        """
+        Run the model.
+        :param prompt:
+        :return:
+        """
         response = self.client.generate(
             model=self.engine,
             prompt=str(prompt),
