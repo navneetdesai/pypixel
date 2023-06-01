@@ -15,6 +15,7 @@ jobs:
     steps:
       - name: Create secrets JSON File
         run: |
+          touch /home/runner/work/pypixel/pypixel/pypixel/models/secrets.json
           echo '{ "cohere_api_key": "Dummy", "openai_api_key": "Dummy", "starcoder_api_key": "Dummy" }' > /home/runner/work/pypixel/pypixel/pypixel/models/secrets.json
     
       - name: Checkout code
