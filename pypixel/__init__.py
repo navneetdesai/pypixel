@@ -91,7 +91,7 @@ class PyPixel:
             messages.append(message)
         return messages
 
-    def generate_images(self, prompt, size, num_images, download=False):
+    def generate_images(self, prompt, size=None, num_images=None, download=False):
         if not isinstance(self.model, OpenAI):
             raise InvalidModelException(
                 "Invalid model for image generation. Only OpenAI supports image generation."
@@ -104,15 +104,15 @@ class PyPixel:
 
     def download(self, download, image_urls):
         if download:
-            for image_url in image_urls:
-                self.download_image(image_url)
+            for index, image_url in enumerate(image_urls):
+                self.download_image(image_url, index)
         else:
             logging.warning(
                 "Image download is currently disabled. Use download=True to enable. Image URL expires in 60 minutes."
             )
         return image_urls
 
-    def edit_images(self, image, mask, prompt, n, size, download=False):
+    def edit_images(self, image, mask, prompt, n=None, size=None, download=False):
         if not isinstance(self.model, OpenAI):
             raise InvalidModelException(
                 "Invalid model for image editing. Only OpenAI supports image editing."
@@ -123,10 +123,11 @@ class PyPixel:
         )
         return self.download(download, image_urls)
 
-    def download_image(self, image_url):
+    def download_image(self, image_url, index):
         os.makedirs(DOWNLOAD_DIR, exist_ok=True)
         file_name = os.path.join(
-            DOWNLOAD_DIR, datetime.now().strftime("%Y-%m-%d-%H:%M:%S%f") + ".png"
+            DOWNLOAD_DIR,
+            datetime.now().strftime("%Y-%m-%d-%H:%M:%S%f") + f"_{index}.png",
         )
         try:
             self.debug and print("Retrieving image from url...")

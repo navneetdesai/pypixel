@@ -1,11 +1,12 @@
-import openai
+import sys
+from io import StringIO
+
 import pytest
 
 from pypixel import PyPixel
 from pypixel.constants import *
 from pypixel.exceptions import *
 from pypixel.models import Cohere, OpenAI, Starcoder
-from pypixel.prompts import *
 
 
 class TestPyPixel:
@@ -55,6 +56,15 @@ class TestPyPixel:
         """
         assert self.pypixel_openai.extract_code(f"exec{START}print(){END}") == "print()"
 
+    def test_extract_code(self):
+        assert self.pypixel_openai.extract_code(f"{START}print(){END}") == "print()"
+        assert (
+            self.pypixel_openai.extract_code(
+                f"Here is your code: {START}import cv2\nimport datetime{END}print()"
+            )
+            == "import cv2\nimport datetime"
+        )
+
     def test_check_code(self):
         code = "print('Hello, world!')"
         expected_messages = []
@@ -73,3 +83,16 @@ class TestPyPixel:
 
         with pytest.raises(SyntaxError):
             self.pypixel_openai.check_code("print('Hello world'")
+
+    def test_run_code(self):
+        code = "print('Hello, world!')"
+        capture = sys.stdout = StringIO()
+        self.pypixel_openai.run_code(code)
+        output = capture.getvalue()
+        sys.stdout = sys.__stdout__
+        assert output == "Hello, world!\n"
+
+    def test_generate_code(self):
+        prompt = "Write a function to add two numbers"
+        with pytest.raises(InvalidModelException):
+            self.pypixel_openai.generate_code(prompt, "InvalidModel")
