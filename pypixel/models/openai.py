@@ -2,6 +2,7 @@ import logging
 
 import openai
 
+from ..constants import OPENAI_API_KEY
 from ..exceptions import InvalidAttributeException, InvalidPromptException
 from ..prompts import EditImagePrompt, GenerateImagePrompt
 from .base import Model
@@ -24,7 +25,7 @@ class OpenAI(Model):
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        openai.api_key = self._secrets.get("openai_api_key")
+        openai.api_key = self._secrets.get(OPENAI_API_KEY)
 
     def run(self, prompt):
         response = None

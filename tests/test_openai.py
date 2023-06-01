@@ -192,7 +192,9 @@ class TestOpenAI:
             ]
         }
         image = mask = None  # dummy
-        response = model.edit_images(image, mask, prompt, num_images=3)
+        response = model.edit_images(
+            image=image, mask=mask, prompt=prompt, num_images=3
+        )
         mock.assert_called_once_with(
             image=image,  # dummy data
             mask=mask,

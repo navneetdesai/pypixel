@@ -1,5 +1,6 @@
 import cohere
 
+from ..constants import COHERE_API_KEY
 from .base import Model
 
 
@@ -17,7 +18,7 @@ class Cohere(Model):
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.client = cohere.Client(self._secrets.get("cohere_api_key"))
+        self.client = cohere.Client(self._secrets.get(COHERE_API_KEY))
 
     def run(self, prompt):
         response = self.client.generate(

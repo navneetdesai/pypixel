@@ -2,6 +2,8 @@ import json
 import os
 from abc import ABC, abstractmethod
 
+from dotenv import dotenv_values
+
 import pypixel.constants as constants
 from pypixel import UnimplementedModelException
 
@@ -12,7 +14,8 @@ class Model(ABC):
     def __init__(self, **kwargs):
         for key, value in kwargs.items():
             setattr(self, key, value)
-        self._secrets = self.read_secrets(constants.SECRETS)
+        if not hasattr(self, "_secrets"):
+            self._secrets = self.read_secrets(constants.SECRETS)
 
     def __repr__(self):
         return self.__str__()
@@ -29,7 +32,9 @@ class Model(ABC):
         raise UnimplementedModelException(str(self))
 
     @staticmethod
-    def read_secrets(secrets_file: str) -> str:
+    def read_secrets(secrets_file: str) -> dict:
+        if env_vars := dotenv_values("../../.env"):
+            return env_vars
         try:
             current_dir = os.path.dirname(os.path.abspath(__file__))
             secrets_file = os.path.join(current_dir, secrets_file)

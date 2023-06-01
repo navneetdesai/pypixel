@@ -2,6 +2,9 @@ START = "<start>"
 END = "</end>"
 SECRETS = "secrets.json"
 ALLOWED_LIBRARIES = "opencv", "numpy", "matplotlib", "cv2"
+OPENAI_API_KEY = "OPENAI_KEY"
+COHERE_API_KEY = "COHERE_KEY"
+STARCODER_API_KEY = "STARCODER_KEY"
 BLACKLIST = (  # blacklisted functions
     "eval",
     "exec",

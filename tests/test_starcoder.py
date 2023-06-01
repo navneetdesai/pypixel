@@ -1,5 +1,6 @@
 import pytest
 
+from pypixel.constants import STARCODER_API_KEY
 from pypixel.models import Starcoder
 
 
@@ -19,4 +20,4 @@ class TestStarcoder:
         assert hasattr(
             model, "_secrets"
         ), "Create a secrets.json file with your Starcoder API key"
-        assert model._secrets.get("starcoder_api_key") is not None
+        assert model._secrets.get(STARCODER_API_KEY) is not None

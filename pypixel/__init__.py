@@ -119,7 +119,11 @@ class PyPixel:
             )
         self.debug and print("Editing images...")
         image_urls = self.model.edit_images(
-            EditImagePrompt(prompt), image, mask, n, size
+            prompt=EditImagePrompt(prompt),
+            image=image,
+            mask=mask,
+            num_images=n,
+            size=size,
         )
         return self.download(download, image_urls)
 
