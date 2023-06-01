@@ -5,6 +5,7 @@ from datetime import datetime
 
 import pyflakes
 import requests
+from pyflakes import checker
 
 from .constants import BLACKLIST, DOWNLOAD_DIR, END, SECRETS, START
 from .exceptions import *
@@ -62,9 +63,10 @@ class PyPixel:
         if START not in text or END not in text:
             raise InvalidCodeException(text)
 
-        if words := [word for word in BLACKLIST if word in text]:
+        code = text.split(START)[1].split(END)[0]
+        if words := [word for word in BLACKLIST if word in code]:
             raise DangerousCodeException(text, words)
-        return text.split(START)[1].split(END)[0]
+        return code
 
     @staticmethod
     def write_to_file(code, file_name):
@@ -75,7 +77,7 @@ class PyPixel:
     def check_code(code):
         messages = []
         tree = compile(code, "generated_code", "exec", ast.PyCF_ONLY_AST)
-        checker = pyflakes.Checker(tree, "generated_code")
+        checker = pyflakes.checker.Checker(tree, "generated_code")
         for warning in checker.messages:
             message = f"{warning.__class__.__name__}: {warning.message % warning.message_args}"
             messages.append(message)
