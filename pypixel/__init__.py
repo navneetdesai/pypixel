@@ -13,7 +13,7 @@ from .prompts import *
 
 
 class PyPixel:
-    debug: False
+    debug: bool = False
     retries = 1
 
     def __init__(self, model, **kwargs):
