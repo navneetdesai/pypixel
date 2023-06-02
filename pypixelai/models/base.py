@@ -62,7 +62,7 @@ class Model(ABC):
         :param secrets_file:
         :return:
         """
-        if env_vars := dotenv_values("../../.env"):
+        if env_vars := dotenv_values(".env"):
             return env_vars
         try:
             current_dir = os.path.dirname(os.path.abspath(__file__))

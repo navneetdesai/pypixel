@@ -1,7 +1,5 @@
 # pypixel
 [![Code Quality](https://github.com/navneetdesai/pypixel/actions/workflows/code-quality.yml/badge.svg)](https://github.com/navneetdesai/pypixel/actions/workflows/code-quality.yml)
-[![Code coverage](https://img.shields.io/badge/codecoverage-73%25-green.svg)](#)
-![Tests](https://img.shields.io/badge/Tests-40-blue)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
 
