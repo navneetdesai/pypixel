@@ -1,6 +1,6 @@
 [project]
 name = "pypixelai"
-version = "0.0.1"
+version = "0.2.0"
 authors = [
   { name="Navneet Desai", email="navneetdesai44@gmail.com" },
 ]
@@ -18,7 +18,7 @@ classifiers = [
 
 [tool.poetry]
 name = "pypixelai"
-version = "0.1.0"
+version = "0.2.0"
 description = "Image processing made easy"
 authors = ["Navneet Desai <navneetdesai44@gmail.com>"]
 readme = "README.md"

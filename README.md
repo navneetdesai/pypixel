@@ -19,7 +19,6 @@ existing ones, allowing for creative experimentation and customization.
 
 - [Features](#features)
 - [Installation](#installation)
-- [Usage](#usage)
 - [Examples](#examples)
 - [Contributing](#contributing)
 - [License](#license)
