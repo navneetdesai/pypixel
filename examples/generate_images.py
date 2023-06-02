@@ -1,5 +1,5 @@
-from pypixel import PyPixel
-from pypixel.models import OpenAI
+from pypixelai import PyPixel
+from pypixelai.models import OpenAI
 
 
 def main():

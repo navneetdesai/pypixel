@@ -1,7 +1,7 @@
 import pytest
 
-from pypixel.constants import STARCODER_API_KEY
-from pypixel.models import Starcoder
+from pypixelai.constants import STARCODER_API_KEY
+from pypixelai.models import Starcoder
 
 
 class TestStarcoder:

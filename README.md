@@ -37,7 +37,40 @@ existing ones, allowing for creative experimentation and customization.
 
 
 ## Usage
+- Generate code snippets for image processing tasks
+  ```python
+  from pypixelai import PyPixel # Import PyPixel
+  from pypixelai.models import OpenAI # choose a model
+  model = OpenAI()
+  px = PyPixel(
+        model
+        #  debug=True       # print debug messages, default: False
+        # retries=3        # number of times to retry code default=1
+    )
+  code = px(
+        "Increase the brightness of the image by 50%",
+        #  write_to_file="test_output.py",    # write code to file
+        #  run_code=True,                     # run code
+    )
+    print(code)
+  ```  
+- Generate new images from scratch
+  ```python
+    model = OpenAI()  # choose a model
+    px = PyPixel(model, retries=3)  # initialize PyPixel with the model
+    code = px.generate_images("Blank white image", num_images=2, download=True)
+    print(code)
+  ```
 
+
+- Edit existing images
+  ```python
+    image = open("image.jpg", "rb")
+    mask = open("mask.png", "rb")
+    prompt = "A sunlit indoor lounge area with a pool containing a flamingo"
+    urls = px.edit_images(image, mask, prompt, n=None, size=None, download=False)
+    print(urls)
+  ```
 
 
 ## Examples

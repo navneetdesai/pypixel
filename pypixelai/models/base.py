@@ -7,8 +7,8 @@ from abc import ABC, abstractmethod
 
 from dotenv import dotenv_values
 
-import pypixel.constants as constants
-from pypixel import UnimplementedModelException
+import pypixelai.constants as constants
+from pypixelai import UnimplementedModelException
 
 
 class Model(ABC):

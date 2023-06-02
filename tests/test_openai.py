@@ -1,9 +1,9 @@
 import openai
 import pytest
 
-from pypixel.exceptions import *
-from pypixel.models import OpenAI
-from pypixel.prompts import *
+from pypixelai.exceptions import *
+from pypixelai.models import OpenAI
+from pypixelai.prompts import *
 
 
 class TestOpenAI:

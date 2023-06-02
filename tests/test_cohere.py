@@ -2,7 +2,7 @@ import cohere
 import openai
 import pytest
 
-from pypixel.models import Cohere
+from pypixelai.models import Cohere
 
 
 class TestOpenAI:

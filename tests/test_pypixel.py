@@ -3,10 +3,10 @@ from io import StringIO
 
 import pytest
 
-from pypixel import PyPixel
-from pypixel.constants import *
-from pypixel.exceptions import *
-from pypixel.models import Cohere, OpenAI, Starcoder
+from pypixelai import PyPixel
+from pypixelai.constants import *
+from pypixelai.exceptions import *
+from pypixelai.models import Cohere, OpenAI, Starcoder
 
 
 class TestPyPixel:

@@ -1,5 +1,5 @@
-from pypixel import PyPixel
-from pypixel.models import OpenAI
+from pypixelai import PyPixel
+from pypixelai.models import OpenAI
 
 
 def main():
@@ -14,7 +14,7 @@ def main():
         #  write_to_file="test_output.py",    # write code to file
         #  run_code=True,                     # run code
     )
-    # print(code)
+    print(code)
 
 
 if __name__ == "__main__":

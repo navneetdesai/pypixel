@@ -1,7 +1,7 @@
 import pytest
 
-from pypixel import prompts
-from pypixel.exceptions import InvalidPromptException
+from pypixelai import prompts
+from pypixelai.exceptions import InvalidPromptException
 
 
 class TestPrompts:
