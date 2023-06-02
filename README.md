@@ -11,7 +11,7 @@ to automate image processing workflows effortlessly.
 Additionally, Pypixel enables you to generate new images from scratch and edit 
 existing ones, allowing for creative experimentation and customization. 
 
-
+Package: https://pypi.org/project/pypixelai/
 
 ## Table of Contents
 
