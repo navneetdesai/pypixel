@@ -34,9 +34,17 @@ existing ones, allowing for creative experimentation and customization.
 
 
 ## Installation
+`pip install pypixelai` \
+`vim .env`  # add your API key to the .env file . \
+
+```
+OPENAI_KEY="" 
+COHERE_KEY=""
+STARCODER_KEY="
+```
 
 
-## Usage
+## Examples
 - Generate code snippets for image processing tasks
   ```python
   from pypixelai import PyPixel # Import PyPixel
@@ -73,12 +81,9 @@ existing ones, allowing for creative experimentation and customization.
   ```
 
 
-## Examples
-
-
-
 ## Contributing
 
+If you have any suggestions or would like to contribute in any way, please raise an [issue](https://github.com/navneetdesai/pypixel/issues).
 
 
 ## License
