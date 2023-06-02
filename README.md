@@ -61,13 +61,28 @@ STARCODER_KEY="
         #  run_code=True,                     # run code
     )
     print(code)
-  ```  
+  ```
+Output:
+```python
+
+import cv2
+import numpy as np
+
+img = cv2.imread('image.jpg')
+img = np.int16(img)
+img = img + (50/100)*img
+img = np.clip(img, 0, 255)
+img = np.uint8(img)
+cv2.imwrite('image_brightened.jpg', img)
+
+```
+
 - Generate new images from scratch
   ```python
     model = OpenAI()  # choose a model
     px = PyPixel(model, retries=3)  # initialize PyPixel with the model
-    code = px.generate_images("Blank white image", num_images=2, download=True)
-    print(code)
+    urls = px.generate_images("Blank white image", num_images=2, download=True)
+    print(urls)
   ```
 
 
