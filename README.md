@@ -2,8 +2,8 @@
 [![Build](https://github.com/navneetdesai/pypixel/actions/workflows/code-quality.yml/badge.svg)](https://github.com/navneetdesai/pypixel/actions/workflows/code-quality.yml)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![Cohere](https://img.shields.io/badge/Cohere-v4.6.0-blueviolet)](https://cohere.ai/)
-[![OpenAI](https://img.shields.io/badge/OpenAI-0.27.7)](https://openai.com/)
-[![black](https://img.shields.io/badge/black-23.3.0-black)](https://black.readthedocs.io/)
+[![OpenAI](https://img.shields.io/badge/OpenAI-v0.27.7-blue)](https://openai.com/)
+[![black](https://img.shields.io/badge/black-v23.3.0-black)](https://black.readthedocs.io/)
 
 
 
